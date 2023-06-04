@@ -1,4 +1,21 @@
-./vscode
-./bin
-./obj
-./appsettings.json
+# Ignore build output
+bin/
+obj/
+
+# Ignore IDE-specific files
+.vs/
+*.suo
+*.user
+*.sln.docstates
+
+# Ignore NuGet packages
+*.nupkg
+
+# Ignore log files
+*.log
+
+# Ignore macOS-specific files
+.DS_Store
+
+# Ignore Visual Studio Code settings
+.vscode/

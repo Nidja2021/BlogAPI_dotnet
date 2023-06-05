@@ -1,8 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
 namespace BlogAPI.Services
 {
     public class AuthService : IAuthService
@@ -73,7 +68,7 @@ namespace BlogAPI.Services
             return jsonResponse;
         }
 
-        private string GenerateJwtToken(User user) {
+        public string GenerateJwtToken(User user) {
 
             var claims = new List<Claim> {
                 new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),

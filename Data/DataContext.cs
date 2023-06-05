@@ -10,10 +10,14 @@ namespace BlogAPI.Data
         public DataContext(DbContextOptions<DataContext> options) : base(options) {}
 
         public DbSet<User> Users { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            base.OnModelCreating(builder);
+            builder.Entity<Blog>()
+                .HasOne(b => b.User)
+                .WithMany(a => a.Blogs)
+                .HasForeignKey(b => b.UserId);
         }
     }
 }

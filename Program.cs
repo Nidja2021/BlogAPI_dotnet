@@ -3,6 +3,7 @@ global using BlogAPI.Data;
 global using BlogAPI.Dtos.RequestDtos;
 global using BlogAPI.Dtos.ResponseDtos;
 global using BlogAPI.Services;
+global using BlogAPI.Helpers;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 global using AutoMapper;
@@ -12,6 +13,9 @@ global using Microsoft.IdentityModel.Tokens;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using System.IdentityModel.Tokens.Jwt;
 global using System.Text;
+global using System.ComponentModel.DataAnnotations;
+global using Microsoft.AspNetCore.Authorization;
+global using Microsoft.AspNetCore.Mvc;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -42,6 +46,7 @@ builder.Services.AddAuthentication(options => {
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddTransient<IBlogService, BlogService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -59,6 +64,7 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();

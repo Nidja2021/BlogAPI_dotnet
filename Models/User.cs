@@ -12,5 +12,6 @@ namespace BlogAPI.Models
         public string? Email { get; set; }
         public string? Password { get; set; }
         public Roles roles { get; set; } = Roles.User;
+        public ICollection<Blog>? Blogs { get; set; }
     }
 }
